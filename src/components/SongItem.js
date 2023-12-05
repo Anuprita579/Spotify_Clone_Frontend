@@ -15,7 +15,7 @@ function SongItem({item}) {
                 title:title,
                 artist:artist,
                 image:image,
-                url:url,
+                url:`http://127.0.0.1:5000/api/stream?song=${title}&artist=${artist}`,
             }
         );
         setIsplaying(true)
@@ -37,11 +37,9 @@ function SongItem({item}) {
         <Icon size={20} name="play" isBlack={true}/>
     </button>
     </div>
-
     <h6 className='overflow-hidden overflow-ellipsis whitespace-nowrap text-base font-semibold'>
         {item.title}
     </h6>
-
     
     </NavLink>
   )

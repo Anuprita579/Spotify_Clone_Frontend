@@ -11,14 +11,19 @@ function Search() {
     const {songs}=context;
 
     const handleSearch=()=>{
-        const index=songs.findIndex((x)=>x.title===searchTerm);
-        if (index!==-1){
-            setSearchResults([songs[index]]);
-
-        }
-        else{
-            setSearchResults([]);
-        }
+        fetch("http://127.0.0.1:5000/api/search", {
+            method: "POST",
+            body: new URLSearchParams({
+                search_box: searchTerm
+            }),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then((response) => {
+            return response.json()
+        }).then((data) => {
+            setSearchResults(data)
+        })
     };
 
   return (
